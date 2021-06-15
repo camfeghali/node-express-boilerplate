@@ -37,9 +37,11 @@ async function getUsers(req, res) {
 module.exports = {
   get: {
     "/users": getUsers,
-    "users/:uuid": getUser,
+    "/users/:uuid": getUser,
   },
   post: {
     "/users": createUser,
   },
 };
+
+module.exports.getUsers = getUsers;

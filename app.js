@@ -1,5 +1,6 @@
 const { sequelize } = require("./models");
 const { expressApp } = require("./server");
+const getUsers = require("./controllers/users").getUsers;
 
 const port = 3000;
 const HOST = "0.0.0.0";
