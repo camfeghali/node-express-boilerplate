@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Post } = require("../models");
 
 async function createUser(req, res) {
   const { name, email, role } = req.body;
@@ -16,6 +16,7 @@ async function getUser(req, res) {
   try {
     const user = await User.findOne({
       where: { uuid },
+      include: [{ model: Post, as: "posts" }],
     });
     return res.json(user);
   } catch (err) {
@@ -26,7 +27,7 @@ async function getUser(req, res) {
 
 async function getUsers(req, res) {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({ include: "posts" });
     return res.json(users);
   } catch (err) {
     console.log(err);
