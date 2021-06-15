@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,35 +7,39 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate({ Post }) {
       // define association here
+      this.hasMany(Post, { foreignKey: "userId" });
     }
-    toJSON(){
-      return {...this.get(), id: undefined}
+    toJSON() {
+      return { ...this.get(), id: undefined };
     }
-  };
-  User.init({
-    uuid: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
+  }
+  User.init(
+    {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    {
+      sequelize,
+      tableName: "users",
+      modelName: "User",
     }
-  }, {
-    sequelize,
-    tableName: 'users',
-    modelName: 'User',
-  });
+  );
   return User;
 };

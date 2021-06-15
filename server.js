@@ -1,42 +1,6 @@
-const { User } = require("./models");
-
-function getRoot(req, res) {
-  res.send("Hello World");
-}
-
-async function createUser(req, res) {
-  const { name, email, role } = req.body;
-  try {
-    const user = await User.create({ name, email, role });
-    return res.json(user);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-}
-
-async function getUser(req, res) {
-  const uuid = req.params.uuid;
-  try {
-    const user = await User.findOne({
-      where: { uuid },
-    });
-    return res.json(user);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-}
-
-async function getUsers(req, res) {
-  try {
-    const users = await User.findAll();
-    return res.json(users);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-}
+const express = require("express");
+var bodyParser = require("body-parser");
+const router = require("./controllers");
 
 function createServer() {
   const app = express();
@@ -47,35 +11,18 @@ function createServer() {
 
 function setRoutes() {
   let app = createServer();
-  for (let httpMethod in controllers) {
-    let routes = controllers[httpMethod];
+  for (let httpMethod in router) {
+    let routes = router[httpMethod];
     for (let route in routes) {
-      let action = routes[route];
-      console.log("route: ", route, "| action: ", action);
-      console.log(`app.${httpMethod}('${route}', ${action})`);
-      eval(`app.${httpMethod}('${route}', ${action})`);
+      switch (httpMethod) {
+        case "get":
+          app.get(route, routes[route]);
+        case "post":
+          app.post(route, routes[route]);
+      }
     }
   }
   return app;
 }
 
-// const routes =
-// app.get('/', handlers.getRoot);
-// app.post('/users', handlers.createUser);
-// app.get('/users', handlers.getUsers)
-// app.get('/users/:uuid', handlers.getUser)
-
-module.exports.getRoot = getRoot;
-module.exports.createUser = createUser;
-module.exports.getUsers = getUsers;
-module.exports.getUser = getUser;
-module.exports.routes = {
-  get: {
-    "/": getRoot,
-    "/users": getUsers,
-    "users/:uuid": getUser,
-  },
-  post: {
-    "/users": createUser,
-  },
-};
+module.exports.expressApp = setRoutes;
