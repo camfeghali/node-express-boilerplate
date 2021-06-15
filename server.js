@@ -21,6 +21,12 @@ function setRoutes() {
         case "post":
           app.post(route, routes[route]);
           break;
+        case "put":
+          app.put(route, routes[route]);
+          break;
+        case "delete":
+          app.delete(route, routes[route]);
+          break;
       }
     }
   }

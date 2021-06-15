@@ -35,6 +35,34 @@ async function getUsers(req, res) {
   }
 }
 
+async function editUser(req, res) {
+  const uuid = req.params.uuid;
+  const { name, email, role } = req.body;
+  try {
+    const user = await User.findOne({ where: { uuid } });
+    user.name = name;
+    user.email = email;
+    user.role = role;
+    await user.save();
+    return res.json(user);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+}
+
+async function deleteUser(req, res) {
+  const uuid = req.params.uuid;
+  try {
+    const user = await User.findOne({ where: { uuid } });
+    await user.destroy();
+    return res.json({ message: "User deleted!" });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+}
+
 module.exports = {
   get: {
     "/users": getUsers,
@@ -42,5 +70,11 @@ module.exports = {
   },
   post: {
     "/users": createUser,
+  },
+  put: {
+    "/users/:uuid": editUser,
+  },
+  delete: {
+    "/users/:uuid": deleteUser,
   },
 };
