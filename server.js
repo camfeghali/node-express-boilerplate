@@ -17,8 +17,10 @@ function setRoutes() {
       switch (httpMethod) {
         case "get":
           app.get(route, routes[route]);
+          break;
         case "post":
           app.post(route, routes[route]);
+          break;
       }
     }
   }

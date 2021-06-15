@@ -10,5 +10,5 @@
   "scripts": {
     "dev": "node app.js",
     "debug": "nodemon --inspect app.js"
-}
+  }
 }

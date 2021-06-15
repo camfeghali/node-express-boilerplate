@@ -43,5 +43,3 @@ module.exports = {
     "/users": createUser,
   },
 };
-
-module.exports.getUsers = getUsers;

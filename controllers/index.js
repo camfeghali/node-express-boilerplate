@@ -21,5 +21,5 @@ fs.readdirSync(__dirname)
       }
     }
   });
-
+console.log("router: ", router);
 module.exports = router;
