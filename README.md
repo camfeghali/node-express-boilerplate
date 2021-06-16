@@ -17,8 +17,11 @@ This is a boilerplate NodeJS - Express - Sequelize application packaged with a P
   `docker-compose -f docker-compose.dev.yml up --build`
 
 **Stopping the services**
-
+If compose was run in detached mode, run the following to stop the services
 `docker-compose -f docker-compose.dev.yml down`
+
+**Run tests**
+`npm run test`
 
 **Debugging**
 
