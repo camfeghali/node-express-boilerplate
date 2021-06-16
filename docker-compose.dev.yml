@@ -12,12 +12,6 @@ services:
     links:
       - db
     command: bash -c "npm run migrate && node app.js"
-    # environment:
-    #   - SERVER_PORT=8000
-    #   - CONNECTIONSTRING='postgres://fa_demo:insabgho123@example.com:5432/dbname'
-    # volumes:
-    #   - ./:/app
-    # command: npm run debugContainer
 
   db:
     image: postgres:13.3
@@ -31,9 +25,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    # volumes:
-    #   - node_server_boilerplate_pgsql:/data/db
-    #   - node_server_boilerplate_pgsql_config:/data/configdb
-# volumes:
-#   node_server_boilerplate_pgsql:
-#   node_server_boilerplate_pgsql_config:
