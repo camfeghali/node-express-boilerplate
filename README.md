@@ -1,12 +1,12 @@
-# README
+**# README**
 
 This is a boilerplate NodeJS - Express - Sequelize application packaged with a PostgreSQL database that run inside two separate Docker containers, configured for local development.
 
-**Prerequesites:**
+## **Prerequesites:**
 
-- Docker
+\- Docker
 
-**Getting started**
+## **Getting started**
 
 - **Clone the Repository**
 
@@ -16,17 +16,30 @@ This is a boilerplate NodeJS - Express - Sequelize application packaged with a P
 
   `docker-compose -f docker-compose.dev.yml up --build`
 
-**Stopping the services**
+## **Stopping the services**
+
 If compose was run in detached mode, run the following to stop the services
-`docker-compose -f docker-compose.dev.yml down`
 
-**Run tests**
-`npm run test`
+```
+docker-compose -f docker-compose.dev.yml down
+```
 
-**To run tests before building an image**
+## **Running tests**
+
+**To run tests**
+
+```
+npm run test
+```
+
+**To build an image but making sure that tests pass first**
+
 The image will not be built if tests fail.
-`docker build -t <your-image-name> --target test .`
 
-**Debugging**
+```
+docker build -t <your-image-name> --target test .
+```
 
-Open Google Chrome, and enter 'about:inspect' in the url -> Click on **Open dedicated DevTools for Node** -> In DevTools, navigate to the 'Sources' page, click on Node.js -> file -> app, find your file and place a breakpoint where needed.
+## Debugging
+
+Open Google Chrome, and enter 'about:inspect' in the url -> Click on **\*\*Open dedicated DevTools for Node\*\*** -> In DevTools, navigate to the 'Sources' page, click on Node.js -> file -> app, find your file and place a breakpoint where needed.
