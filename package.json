@@ -11,7 +11,10 @@
   "scripts": {
     "dev": "node app.js",
     "debug": "nodemon --inspect=0.0.0.0:9229 app.js",
-    "migrate": "sequelize db:migrate",
-    "debugContainer": "nodemon --inspect=0.0.0.0:9229 app.js"
+    "test": "mocha ./**/*.js",
+    "migrate": "sequelize db:migrate"
+  },
+  "devDependencies": {
+    "mocha": "^9.0.0"
   }
 }
