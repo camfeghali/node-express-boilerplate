@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - db
+    command: bash -c "npm run migrate && node app.js"
+    # environment:
+    #   - SERVER_PORT=8000
+    #   - CONNECTIONSTRING='postgres://fa_demo:insabgho123@example.com:5432/dbname'
+    # volumes:
+    #   - ./:/app
+    # command: npm run debugContainer
+
+  db:
+    image: postgres:13.3
+    environment:
+      POSTGRES_PASSWORD: "insabgho123"
+      POSTGRES_USER: "node_express_sequelize_boilerplate"
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    # volumes:
+    #   - node_server_boilerplate_pgsql:/data/db
+    #   - node_server_boilerplate_pgsql_config:/data/configdb
+# volumes:
+#   node_server_boilerplate_pgsql:
+#   node_server_boilerplate_pgsql_config:

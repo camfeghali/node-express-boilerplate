@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "fa_demo",
+    "username": "node_express_sequelize_boilerplate",
     "password": "insabgho123",
-    "database": "fa_demo_db",
-    "host": "127.0.0.1",
+    "database": "node_express_sequelize_boilerplate",
+    "host": "db",
     "dialect": "postgres"
   },
   "test": {

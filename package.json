@@ -5,10 +5,13 @@
     "nodemon": "^2.0.7",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0"
   },
   "scripts": {
     "dev": "node app.js",
-    "debug": "nodemon --inspect app.js"
+    "debug": "nodemon --inspect app.js",
+    "migrate": "sequelize db:migrate",
+    "debugContainer": "nodemon --inspect=0.0.0.0:9229 app.js"
   }
 }
