@@ -23,6 +23,10 @@ If compose was run in detached mode, run the following to stop the services
 **Run tests**
 `npm run test`
 
+**To run tests before building an image**
+The image will not be built if tests fail.
+`docker build -t <your-image-name> --target test .`
+
 **Debugging**
 
 Open Google Chrome, and enter 'about:inspect' in the url -> Click on **Open dedicated DevTools for Node** -> In DevTools, navigate to the 'Sources' page, click on Node.js -> file -> app, find your file and place a breakpoint where needed.

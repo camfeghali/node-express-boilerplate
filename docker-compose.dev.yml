@@ -4,6 +4,7 @@ services:
   app:
     build:
       context: .
+      target: dev
     environment:
       NODE_ENV: "development"
     ports:
