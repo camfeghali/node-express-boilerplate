@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "node app.js",
-    "debug": "nodemon --inspect app.js",
+    "debug": "nodemon --inspect=0.0.0.0:9229 app.js",
     "migrate": "sequelize db:migrate",
     "debugContainer": "nodemon --inspect=0.0.0.0:9229 app.js"
   }

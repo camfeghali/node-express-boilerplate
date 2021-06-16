@@ -7,7 +7,7 @@ const HOST = "0.0.0.0";
 
 const app = expressApp();
 
-app.get("/", (req, res) => res.send("Hello from ROOT!"));
+app.get("/", (req, res) => res.send("Hello from ROOTOO!"));
 
 app.listen(port, HOST, async () => {
   console.log(`Listening on port ${port}`);

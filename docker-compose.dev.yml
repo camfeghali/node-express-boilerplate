@@ -4,24 +4,32 @@ services:
   app:
     build:
       context: .
+    environment:
+      NODE_ENV: "development"
     ports:
       - 3000:3000
+      - 9229:9229
     depends_on:
       db:
         condition: service_healthy
     links:
       - db
-    command: bash -c "npm run migrate && node app.js"
+    command: bash -c "npm run migrate && npm run debug"
+    volumes:
+      - ./:/app
 
   db:
     image: postgres:13.3
     environment:
       POSTGRES_PASSWORD: "insabgho123"
       POSTGRES_USER: "node_express_sequelize_boilerplate"
-    ports:
-      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
+
+volumes:
+  data:
