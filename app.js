@@ -13,4 +13,6 @@ app.listen(port, HOST, async () => {
   console.log(`Listening on port ${port}`);
   await sequelize.authenticate({ force: true });
   console.log("Database connected!");
+  await sequelize.sync({ alter: true });
+  console.log("Database synced!");
 });
