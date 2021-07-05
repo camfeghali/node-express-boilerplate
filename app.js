@@ -12,5 +12,7 @@ app.get("/", (req, res) => res.send("Hello from ROOTOO!"));
 app.listen(port, HOST, async () => {
   console.log(`Listening on port ${port}`);
   await sequelize.authenticate({ force: true });
-  console.log("Database connected!");
+  console.log("\x1b[33m%s\x1b[0m", "Database connected!");
+  await sequelize.sync({ alter: true });
+  console.log("\x1b[36m%s\x1b[0m", "Database synced!");
 });
